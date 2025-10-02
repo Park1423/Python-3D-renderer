@@ -16,7 +16,8 @@ screen.tracer(0,0)
 cursor.color("black","cyan")
 cursor.speed(0)
 cursor.hideturtle()
-FocaL_Length = 400
+Focal_Length = 400
+camerapos = [0,0,0]
 
 #Create cube model
 triangle1 = [[0,-50,70.71],[0,50,70.71],[-70.71,50,0]]
@@ -47,15 +48,15 @@ while True:
     for face in shape1geometry:
         cursor.pu()
 
-        cursor.goto( ((FocaL_Length/(face[2][2]+shape1pos[2]))*(face[2][0]+shape1pos[0])), ((FocaL_Length/(face[2][2]+shape1pos[2]))*(face[2][1]+shape1pos[1])) )
+        cursor.goto( ((Focal_Length/(face[2][2]+shape1pos[2]))*(face[2][0]+shape1pos[0])), ((Focal_Length/(face[2][2]+shape1pos[2]))*(face[2][1]+shape1pos[1])) )
 
         cursor.begin_fill()
         cursor.pd()
 
         for point in face:
-            globalx = point[0] + shape1pos[0]
-            globaly = point[1] + shape1pos[1]
-            distance = FocaL_Length/(point[2] + shape1pos[2])
+            globalx = point[0] + shape1pos[0] - camerapos[0]
+            globaly = point[1] + shape1pos[1] - camerapos[1]
+            distance = Focal_Length/((point[2]-camerapos[2]) + shape1pos[2])
 
             cursor.goto(
             (distance*globalx),
@@ -70,7 +71,7 @@ while True:
     screen.update()
 
    
-    shape1pos[0] -= 0.1     #THIS IS WHAT YOU CHANGE TO MOVE THE CUBE shape1pos[0] is left and right, [1] is up and down, and [3] is forward and backward
+    shape1pos[2] -= 0.2     #THIS IS WHAT YOU CHANGE TO MOVE THE CUBE shape1pos[0] is left and right, [1] is up and down, and [3] is forward and backward
     print(shape1pos)
     #This code has been commented out to have gradual movement, but you can uncomment it if you want. just make sure you comment the "shape1pos[0] += 0.1" line out
     # shape1pos = input("The cube is at " + str(shape1pos) + ". Input new coordinates or enter stop to end the program: ")
