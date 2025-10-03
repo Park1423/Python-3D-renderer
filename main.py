@@ -10,6 +10,8 @@
 
 #Import turtle and create turtle
 import turtle
+import keyboard
+
 cursor = turtle.Turtle()
 screen = turtle.Screen()
 screen.tracer(0,0)
