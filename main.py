@@ -11,6 +11,13 @@
 #Import turtle and create turtle
 import turtle
 import keyboard
+import time
+current_time = time.perf_counter()
+last_time = time.perf_counter()
+delta = current_time - last_time
+
+fps_total = 0
+fps = 0
 
 cursor = turtle.Turtle()
 screen = turtle.Screen()
@@ -46,24 +53,27 @@ shape1pos = [0,10,150]
 
 #render
 while True:
+    current_time = time.perf_counter()
+    delta = current_time - last_time
+    last_time = current_time
 
     if keyboard.is_pressed("w"):
-        camerapos[2] += 0.2 
+        camerapos[2] += 4 * delta
     elif keyboard.is_pressed("s"):
-        camerapos[2] -= 0.2 
+        camerapos[2] -= 4 * delta
     
     if keyboard.is_pressed("a") or keyboard.is_pressed("left"):
-        camerapos[0] -= 0.2 
+        camerapos[0] -= 4 * delta
     elif keyboard.is_pressed("d") or keyboard.is_pressed("right"):
-        camerapos[0] += 0.2 
+        camerapos[0] += 4 * delta
 
     if keyboard.is_pressed("up") or keyboard.is_pressed("space"):
-        camerapos[1] += 1
+        camerapos[1] += 8 * delta
     elif keyboard.is_pressed("down") or keyboard.is_pressed("shift"):
-        camerapos[1] -= 0.2 
+        camerapos[1] -= 4 * delta
     
-    if camerapos[1] > 50 and not (keyboard.is_pressed("space") or keyboard.is_pressed("up")):
-        camerapos[1] -= 0.5
+    if camerapos[1] > 100 and not (keyboard.is_pressed("space") or keyboard.is_pressed("up")):
+        camerapos[1] -= 5 * delta
 
     cursor.clear()
 
@@ -89,7 +99,7 @@ while True:
         cursor.end_fill()
         cursor.pu()
 
-
+    
     screen.update()
     
     #This code has been commented out to have gradual movement, but you can uncomment it if you want. just make sure you comment the "shape1pos[0] += 0.1" line out
@@ -102,3 +112,8 @@ while True:
     #     shape1pos[1] = int(shape1pos[1])
     #     shape1pos[2] = int(shape1pos[2])
     #     cursor.clear()
+    
+    print(str(1/delta))
+
+    time.sleep(0.0005)
+    
