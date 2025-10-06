@@ -15,7 +15,8 @@ import keyboard
 cursor = turtle.Turtle()
 screen = turtle.Screen()
 screen.tracer(0,0)
-cursor.color("black","cyan")
+turtle.bgcolor("#81DDFF")
+cursor.color("black","#474947")
 cursor.speed(0)
 cursor.hideturtle()
 Focal_Length = 400
@@ -45,12 +46,31 @@ shape1pos = [0,10,150]
 
 #render
 while True:
+
+    if keyboard.is_pressed("w"):
+        camerapos[2] += 0.2 
+    elif keyboard.is_pressed("s"):
+        camerapos[2] -= 0.2 
+    
+    if keyboard.is_pressed("a") or keyboard.is_pressed("left"):
+        camerapos[0] -= 0.2 
+    elif keyboard.is_pressed("d") or keyboard.is_pressed("right"):
+        camerapos[0] += 0.2 
+
+    if keyboard.is_pressed("up") or keyboard.is_pressed("space"):
+        camerapos[1] += 1
+    elif keyboard.is_pressed("down") or keyboard.is_pressed("shift"):
+        camerapos[1] -= 0.2 
+    
+    if camerapos[1] > 50 and not (keyboard.is_pressed("space") or keyboard.is_pressed("up")):
+        camerapos[1] -= 0.5
+
     cursor.clear()
 
     for face in shape1geometry:
         cursor.pu()
 
-        cursor.goto( ((Focal_Length/(face[2][2]+shape1pos[2]))*(face[2][0]+shape1pos[0])), ((Focal_Length/(face[2][2]+shape1pos[2]))*(face[2][1]+shape1pos[1])) )
+        cursor.goto(((Focal_Length/(face[2][2]+shape1pos[2]-camerapos[2]))*(face[2][0]+shape1pos[0]-camerapos[0])),((Focal_Length/(face[2][2]+shape1pos[2]-camerapos[2]))*(face[2][1]+shape1pos[1]-camerapos[1])))
 
         cursor.begin_fill()
         cursor.pd()
@@ -71,10 +91,7 @@ while True:
 
 
     screen.update()
-
-   
-    shape1pos[2] -= 0.2     #THIS IS WHAT YOU CHANGE TO MOVE THE CUBE shape1pos[0] is left and right, [1] is up and down, and [3] is forward and backward
-    print(shape1pos)
+    
     #This code has been commented out to have gradual movement, but you can uncomment it if you want. just make sure you comment the "shape1pos[0] += 0.1" line out
     # shape1pos = input("The cube is at " + str(shape1pos) + ". Input new coordinates or enter stop to end the program: ")
     # if shape1pos == "stop":
