@@ -95,7 +95,7 @@ def main():
 
                 cursor.goto(point_to_screen(point,shape1pos))   #Go to each point of each face and connect the dots.
                 #cursor.dot(10,"red")   #uncomment this to see the points of the cube
-
+                
             cursor.end_fill() # finish fill
             cursor.pu()
 
@@ -122,6 +122,7 @@ def point_to_screen(pointpos,objectpos):
     localy = pointpos[1] + objectpos[1] - camerapos[1]
     return (distance * localx),(distance * localy)  # Final math. We could have done this all on one line, but I used local variables for readability.
 
-main()
+if __name__ == '__main__':
+    main()
 
     
