@@ -100,7 +100,7 @@ def main():
             cursor.pu()
 
         
-        screen.update() #force a screen update just in case
+        screen.update() #force a screen update just to be safe
         
         #This code has been commented out to have gradual movement, but you can uncomment it if you want. just make sure you comment the "shape1pos[0] += 0.1" line out
         # shape1pos = input("The cube is at " + str(shape1pos) + ". Input new coordinates or enter stop to end the program: ")
