@@ -16,7 +16,7 @@ s.tracer(0,0)
 c.speed(0)
 c.color("black","cyan")
 c.hideturtle()
-num_of_triangles = 1
+num_of_triangles = 12*16
 shapepos = [0,0,100]
 Focal_Length = 300
 camerapos = [0,0,-0.1]

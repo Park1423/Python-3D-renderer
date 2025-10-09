@@ -14,6 +14,7 @@ import keyboard
 import time
 import random
 
+
 cursor = turtle.Turtle()
 screen = turtle.Screen()
 
