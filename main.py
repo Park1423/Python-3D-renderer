@@ -1,6 +1,6 @@
 ##
 # Code by Parker Jolly
-# On 9/30/2025-10/1/2025
+# On 9/30/2025-10/9/2025
 # Program name: Cube renderer
 # Notes: This is only a prototype and still VERY buggy. For example, there is no proper render
 # order and things can render in the wrong order. Things moved behind the camera also completely break
@@ -124,5 +124,3 @@ def point_to_screen(pointpos,objectpos):
 
 if __name__ == '__main__':
     main()
-
-    
