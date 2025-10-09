@@ -12,6 +12,7 @@
 import turtle
 import keyboard
 import time
+import random
 
 cursor = turtle.Turtle()
 screen = turtle.Screen()
@@ -85,7 +86,7 @@ def main():
 
         for face in shape1geometry: #currently only working with one object, and we iterate for every face in the object
             cursor.pu() #stop drawing for now
-            
+            cursor.color("black",("#"+ str(random.randint(100000,999999))))
             cursor.goto(point_to_screen(face[2],shape1pos)) #Go to the last point to ensure we fill the shape properly
 
             cursor.begin_fill() #start filling the side
