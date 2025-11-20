@@ -108,7 +108,7 @@ def main():
         cursor.pu()
         cursor.goto(-300,300)
         cursor.write(f"FPS: {str(round(fps))}") # Display FPS
-            
+        
         
         for shape in shapes: # For each shape
             for face in shape[0]: # For each triangle in face
@@ -127,6 +127,16 @@ def main():
                     
                 cursor.end_fill() # finish fill
                 cursor.pu()
+
+        cursor.goto(0,10)
+        cursor.pd()
+        cursor.goto(0,-11)
+        cursor.pu()
+        
+        cursor.goto(10,0)
+        cursor.pd()
+        cursor.goto(-11,0)
+        cursor.pu()
 
         screen.update() # Force a screen update
 
